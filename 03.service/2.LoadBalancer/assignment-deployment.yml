@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-deployment
+  labels:
+    tier: frontend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: hello-pod
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: hello-pod-container
+        image: hello-kubernetespaulbouwer/hello-kubernetes:1.5
+        ports:
+          - containerPort: 8080

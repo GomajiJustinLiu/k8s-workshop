@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      name: app
+      labels:
+        tier: frontend
+    spec:
+      volumes:
+        - name: gcp-credential
+          secret:
+            secretName: gcp-credential
+      containers:
+        - name: api
+          image: liu71101/simple-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_HOST
+              value: redis-service.default.svc.cluster.local
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secret/automl
+          volumeMounts:
+            - name: gcp-credential
+              mountPath: "/var/secret"
+              readOnly: true
+        - name: web
+          image: liu71101/simple-web:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: API_HOST
+              value: http://127.0.0.1:8080/api 
