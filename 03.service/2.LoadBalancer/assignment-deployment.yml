@@ -17,3 +17,6 @@ spec:
         image: paulbouwer/hello-kubernetes:1.5
         ports:
           - containerPort: 8080
+  selector:
+    matchLabels:
+      tier: frontend
