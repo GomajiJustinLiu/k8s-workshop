@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: hello-pod-container
-    image: hello-kubernetespaulbouwer/hello-kubernetes:1.5
+    image: paulbouwer/hello-kubernetes:1.5
     ports:
     - containerPort: 8080
