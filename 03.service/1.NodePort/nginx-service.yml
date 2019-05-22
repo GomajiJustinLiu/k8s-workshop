@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: nginx-nodeport-service
 spec:
+  sessionAffinity: None
   type: NodePort
   selector:
     type: frontend
   ports:
-  - port: 8080
+  - protocol: TCP
+    port: 80
     targetPort: 80
     nodePort: 30001

@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: hello-nodeport-service
 spec:
+  sessionAffinity: ClientIP
   type: NodePort
   selector:
     tier: frontend
@@ -10,3 +11,4 @@ spec:
   - port: 8080
     targetPort: 8080
     nodePort: 30002
+    protocol: TCP
