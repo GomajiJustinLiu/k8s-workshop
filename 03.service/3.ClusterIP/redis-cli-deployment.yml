@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cli-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: redis-cli-pod
+      labels:
+        app: clusterip-app
+        tier: frontend
+    spec:
+      containers:
+      - name: redis-cli-pod
+        image: liu71101/redis-cli:latest
+  selector:
+    matchLabels:
+      app: clusterip-app
+      tier: frontend

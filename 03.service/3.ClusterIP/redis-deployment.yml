@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        app: clusterip-app
+        tier: redis
+    spec:
+      containers:
+      - name: redis-pod-container
+        image: redis:5.0-alpine
+        ports:
+        - containerPort: 6379
+  selector:
+    matchLabels:
+      app: clusterip-app
+      tier: redis
