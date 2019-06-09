@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-echo-test-pod
+  labels:
+    app: simple-echo-app
+spec:
+  containers:
+  - image: liu71101/alpine-curl
+    name: simple-echo-test-pod-container
