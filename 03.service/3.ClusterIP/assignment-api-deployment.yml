@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: simple-echo-deployment
 spec:
-  replicas: 1
+  replicas: 2
   template:
     metadata:
       name: simple-echo
